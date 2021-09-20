@@ -4,6 +4,7 @@ import  React, { useState } from "react";
 import { GitReadme } from "./components/GitReadme.js"
 // import { GitReadme2 } from "./components/GitReadme2.js"
 import { GitReadme3 } from "./components/GitReadme3.js"
+import { GitReadme4 } from "./components/GitReadme4.js"
 import SlidingPane from "react-sliding-pane";
 import "react-sliding-pane/dist/react-sliding-pane.css";
 
@@ -28,6 +29,7 @@ export default function App() {
 
 // const reponame = "rockerBOO/awesome-neovim";
 
+ 	console.log("rendering app.js")
 	const [reponame, setReponame] = useState("");
 	const [isshow, setIsshow] = useState(false);
 	const [state, setState] = useState({
@@ -72,7 +74,7 @@ export default function App() {
 		<button onClick={(e) => handleClick(e)}>remarkjs/awesome-remark</button>
 		<button onClick={(e) => handleClick(e)}>rockerBOO/awesome-neovim</button>
 		<button onClick={(e) => handleClick(e)}>neovide/neovide</button>
-		{isshow && <GitReadme3 reponame={reponame} /> }
+		{isshow && <GitReadme4 reponame={reponame} /> }
 
 		 	
 			<SlidingPane
