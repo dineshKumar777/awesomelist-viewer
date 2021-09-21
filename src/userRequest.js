@@ -2,7 +2,6 @@ import useSWR from "swr";
 
 const baseUrl = "https://raw.githubusercontent.com/";
 
-// const fetcher = (url) => fetch(url).then((res) => res.text());
 const fetcher = async url => {
 	const res = await fetch(url)
 	if (res.ok) {
@@ -35,9 +34,6 @@ export const useRequest = (path) => {
 
 	const url = baseUrl + path + "/master/README.md";
 	url.toLowerCase()
-	// const lowercaseurl = baseUrl + path + "/master/readme.md";
-	// console.log(url);
-	// const { data, error } = useSWR(url, fetcher)
 	const { data, error } = useSWR(url, fetcher, {
 		revalidateIfStale: false,
 		revalidateOnFocus: false,
@@ -45,13 +41,6 @@ export const useRequest = (path) => {
 		onErrorRetry: false,
 		shouldRetryOnError: false
 	})
-
-	/* if(error.status === 404) {
-		const {data, error} = useSWR(lowercaseurl, fetcher)
-		return {data , error}
-	}else {
-		return { data, error };
-	} */
 
 	return { data, error };
 };
