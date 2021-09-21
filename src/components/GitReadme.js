@@ -9,9 +9,9 @@ export const GitReadme = props => {
 
 	const { data, error } = useRequest(gitreponame);
 
-	if(error) return "An error has occured..";
+	if (error) return "An error has occured..";
 
-	if(!data) {
+	if (!data) {
 		console.log("first try");
 		return "Loading...";
 	}
@@ -20,12 +20,12 @@ export const GitReadme = props => {
 	//transformUri contains ./
 	return (
 		<div>
-		 	<MarkdownPreview 
-		 	 	source={data}
-		 	 	transformImageUri = {uri => 
- 	 	 	 	 	uri.startsWith("http") ? uri: `https://raw.githubusercontent.com/${gitreponame}/main/${uri}`
+			<MarkdownPreview
+				source={data}
+				transformImageUri={uri =>
+					uri.startsWith("http") ? uri : `https://raw.githubusercontent.com/${gitreponame}/main/${uri}`
 				}
-		/>
+			/>
 		</div>
 	);
 }
