@@ -4,6 +4,8 @@ import MarkdownPreview from "@uiw/react-markdown-preview"
 import SlidingPane from "react-sliding-pane";
 import "react-sliding-pane/dist/react-sliding-pane.css";
 import { ReadmePreview } from "./ReadmePreview"
+import { SlidePreviewer } from "./SlidePreviewer";
+import { SliderGitReadme } from "./SliderGitReadme";
 
 export const GitReadme4 = React.memo(function GitReadme4({ reponame }) {
 	const gitreponame = reponame;
@@ -12,14 +14,20 @@ export const GitReadme4 = React.memo(function GitReadme4({ reponame }) {
 		isPaneOpen: false,
 		isPaneOpenLeft: false,
 	});
+	// const [isShow, setIsshow] = useState(false);
+	const [hlink, setHlink] = useState("nolink");
+	const [htext, setHtext] = useState("nohtext");
+	// const [clickEvent, setClickEvent] = useState();
 
 	const handleClick2 = (e) => {
 		e.preventDefault();
-		setState2({ isPaneOpen: true });
 		console.log(`href value : ${e.currentTarget.href}`)
 		console.log(`value : ${e.currentTarget.text}`)
-		/* setHlink(e.currentTarget.href);
-		setHrefText(e.currentTarget.text); */
+		// setClickEvent(e);
+		setHlink(e.currentTarget.href);
+		setHtext(e.currentTarget.text);
+		setState2({ isPaneOpen: true });
+		// setIsshow(true);
 	}
 
 	const { data, error } = useRequest(gitreponame);
@@ -61,6 +69,7 @@ export const GitReadme4 = React.memo(function GitReadme4({ reponame }) {
 
 	//TODO
 	//transformUri contains ./
+	// {isShow && <SlidePreviewer isOpenPane={true} hlink={hlink} htext={htext} />}
 	return (
 		<div>
 			<ReadmePreview data={data} gitreponame={gitreponame} />
@@ -68,15 +77,15 @@ export const GitReadme4 = React.memo(function GitReadme4({ reponame }) {
 				className="slide-pane"
 				overlayClassName="slide-pane__overlay"
 				isOpen={state2.isPaneOpen}
-				title="Hey, it is optional pane title.  I can be component too."
-				subtitle="Optional subtitle."
+				title={htext}
+				subtitle={hlink}
 				onRequestClose={() => {
 					setState2({ isPaneOpen: false });
 				}}
 			>
 				<div>And I am pane content. BTW, what rocks?</div>
 				<br />
-				<img src="https://raw.githubusercontent.com/neovide/neovide/main/assets/BasicScreenCap.png" />
+				<SliderGitReadme gitreponame={hlink.replace('https://github.com/', '')} />
 			</SlidingPane>
 		</div>
 	);
