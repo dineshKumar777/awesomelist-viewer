@@ -63,7 +63,7 @@ export const GitReadme4 = React.memo(function GitReadme4({ reponame }) {
 	//transformUri contains ./
 	return (
 		<div>
-			<ReadmePreview data={data} reponame={gitreponame} />
+			<ReadmePreview data={data} gitreponame={gitreponame} />
 			<SlidingPane
 				className="slide-pane"
 				overlayClassName="slide-pane__overlay"
