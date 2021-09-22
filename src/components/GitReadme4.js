@@ -22,6 +22,7 @@ export const GitReadme4 = React.memo(function GitReadme4({ reponame }) {
 		setHlink(e.currentTarget.href);
 		setHtext(e.currentTarget.text);
 		setState2({ isPaneOpen: true });
+		document.body.style.overflow = "hidden"
 	}
 
 	const { data, error } = useRequest(gitreponame);
@@ -59,6 +60,7 @@ export const GitReadme4 = React.memo(function GitReadme4({ reponame }) {
 				subtitle={hlink}
 				onRequestClose={() => {
 					setState2({ isPaneOpen: false });
+					document.body.style.overflow = "visible"
 				}}
 			>
 				<div>And I am pane content. BTW, what rocks?</div>
