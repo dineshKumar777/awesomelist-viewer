@@ -6,6 +6,7 @@ import React from 'react'
 		fix ./ in transformimageURI returned result
 		add target=_blank (to open in new window) for non github links
 			- and same to all links in slider preview links
+https://github.com/jguyon/nupum/blob/ba208f8ef4422a650ff3543fd36104afde7acf50/src/app/package-page/package-page-readme.js
 **/
 
 export const ReadmePreview = React.memo(function ReadmePreivew({ data, gitreponame }) {
