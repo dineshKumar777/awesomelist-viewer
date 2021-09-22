@@ -30,10 +30,15 @@ export const GitReadme4 = React.memo(function GitReadme4({ reponame }) {
 		if (data) {
 			document
 				.querySelectorAll('[href*="https"]')
-				.forEach((box) => {
-					console.log('adding clicklistener github links')
-					box.addEventListener('click', (e) => handleClick2(e))
-				});
+				.forEach((httplink) => {
+					if (httplink.href.startsWith("https://github.com")) {
+						console.log('Adding click listerner to github links');
+						httplink.addEventListener("click", (e) => handleClick2(e))
+					} else {
+						console.log("adding target=_blank for non github links");
+						httplink.setAttribute("target", "_blank");
+					}
+				})
 
 			console.log("inside second useeffect")
 		}
