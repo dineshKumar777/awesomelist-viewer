@@ -23,12 +23,16 @@ export default function App() {
 
 	return (
 		<div className="App">
-			<button onClick={() => setState({ isPaneOpen: true })}>slidingpane</button>
+			<button onClick={() => setState({ isPaneOpen: true })}>slidingpane demo</button>
 			<br />
 
 			<button onClick={(e) => handleClick(e)}>remarkjs/awesome-remark</button>
 			<button onClick={(e) => handleClick(e)}>rockerBOO/awesome-neovim</button>
 			<button onClick={(e) => handleClick(e)}>neovide/neovide</button>
+
+			<p>Non-github links will be opened in new window</p>
+			<br />
+
 			{isshow && <GitReadme4 reponame={reponame} />}
 
 
@@ -44,7 +48,7 @@ export default function App() {
 			>
 				<div>And I am pane content. BTW, what rocks?</div>
 				<br />
-				<img src="https://raw.githubusercontent.com/neovide/neovide/main/assets/BasicScreenCap.png" />
+				<img src="https://raw.githubusercontent.com/neovide/neovide/main/assets/BasicScreenCap.png" alt="Basic screen cap" />
 			</SlidingPane>
 		</div>
 	);
