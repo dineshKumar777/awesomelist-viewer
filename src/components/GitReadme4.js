@@ -7,6 +7,7 @@ import { SliderGitReadme } from "./SliderGitReadme";
 
 export const GitReadme4 = React.memo(function GitReadme4({ reponame }) {
 	const gitreponame = reponame;
+	console.log('rendering gitreadme4')
 	console.log(`git repo name => ${gitreponame}`);
 	const [state2, setState2] = useState({
 		isPaneOpen: false,
@@ -24,9 +25,10 @@ export const GitReadme4 = React.memo(function GitReadme4({ reponame }) {
 		setState2({ isPaneOpen: true });
 	}
 
-	const { data, error } = useRequest(gitreponame);
+	const { data, error, repo } = useRequest(gitreponame);
 	useEffect(() => {
 		if (data) {
+			console.log("inside use effect... " + repo.default_branch)
 			document
 				.querySelectorAll('[href*="https"]')
 				.forEach((httplink) => {
@@ -41,7 +43,7 @@ export const GitReadme4 = React.memo(function GitReadme4({ reponame }) {
 
 			console.log("inside second useeffect")
 		}
-	}, [data]);
+	}, [data, repo]);
 
 	if (error) return "An error has occured..";
 
@@ -55,7 +57,7 @@ export const GitReadme4 = React.memo(function GitReadme4({ reponame }) {
 	// {isShow && <SlidePreviewer isOpenPane={true} hlink={hlink} htext={htext} />}
 	return (
 		<div>
-			<ReadmePreview data={data} gitreponame={gitreponame} />
+			<ReadmePreview data={data} gitreponame={gitreponame} defaultBranchname={repo.default_branch} />
 			<SlidingPane
 				className="slide-pane"
 				overlayClassName="slide-pane__overlay"

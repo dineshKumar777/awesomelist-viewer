@@ -1,21 +1,31 @@
 import useSWR from "swr";
 
 const baseUrl = "https://raw.githubusercontent.com/";
+const baseAPIUrl = "https://api.github.com/repos/";
 
 const fetcher = async url => {
 	const res = await fetch(url)
+	if (url.startsWith(baseAPIUrl)) {
+		console.log("inside baseapi url")
+		if (res.ok) {
+			console.log("baseapi url ok status")
+			return await res.json();
+		}
+	}
+
 	if (res.ok) {
-		return res.text();
+		console.log("readme fetchine done")
+		return await res.text();
 	}
 
 	//Github contains both README.md and readme.md
 	//for lowercase function
 	const lowerres = await fetch(url.toLowerCase());
 	if (lowerres.ok) {
-		return lowerres.text()
+		return await lowerres.text()
 	}
 
-	return lowerres.text();
+	return await lowerres.text();
 
 	/* if (!res.ok) {
 		const error = new Error('An error occured while fetching the data.');
@@ -32,9 +42,10 @@ export const useRequest = (path) => {
 		throw new Error(`Path is required`);
 	}
 
-	const url = baseUrl + path + "/master/README.md";
-	url.toLowerCase()
-	const { data, error } = useSWR(url, fetcher, {
+	const apiUrl = baseAPIUrl + path;
+	console.log("inside userequest")
+	console.log("defaultbranch url:" + apiUrl);
+	const { data: repo } = useSWR(apiUrl, fetcher, {
 		revalidateIfStale: false,
 		revalidateOnFocus: false,
 		revalidateOnReconnect: false,
@@ -42,5 +53,22 @@ export const useRequest = (path) => {
 		shouldRetryOnError: false
 	})
 
-	return { data, error };
+	// const url = baseUrl + path + `/${defaultbranchname}/README.md`;
+	/* const { data, error } = useSWR(url, fetcher, {
+		revalidateIfStale: false,
+		revalidateOnFocus: false,
+		revalidateOnReconnect: false,
+		onErrorRetry: false,
+		shouldRetryOnError: false
+	}) */
+
+	//lsp-status.nvim project
+	const { data, error } = useSWR(() => baseUrl + path + `/${repo.default_branch}/README.md`, fetcher, {
+		revalidateIfStale: false,
+		revalidateOnFocus: false,
+		revalidateOnReconnect: false,
+		onErrorRetry: false,
+		shouldRetryOnError: false
+	})
+	return { data, error, repo }
 };

@@ -4,7 +4,7 @@ import { ReadmePreview } from "./ReadmePreview";
 export const SliderGitReadme = ({ gitreponame }) => {
 	console.log('rendering sliderGitreadme')
 
-	const { data, error } = useRequest(gitreponame);
+	const { data, error, repo } = useRequest(gitreponame);
 
 	if (error) return "An error has occured";
 
@@ -15,7 +15,7 @@ export const SliderGitReadme = ({ gitreponame }) => {
 
 	return (
 		<div>
-			<ReadmePreview data={data} gitreponame={gitreponame} />
+			<ReadmePreview data={data} gitreponame={gitreponame} defaultBranchname={repo.default_branch} />
 		</div>
 	)
 }
