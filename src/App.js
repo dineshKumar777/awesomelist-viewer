@@ -26,9 +26,9 @@ export default function App() {
 			<button onClick={() => setState({ isPaneOpen: true })}>slidingpane demo</button>
 			<br />
 
+			<button onClick={(e) => handleClick(e)}>brillout/awesome-react-components</button>
 			<button onClick={(e) => handleClick(e)}>remarkjs/awesome-remark</button>
 			<button onClick={(e) => handleClick(e)}>rockerBOO/awesome-neovim</button>
-			<button onClick={(e) => handleClick(e)}>neovide/neovide</button>
 
 			<p>Non-github links will be opened in new window</p>
 			<br />

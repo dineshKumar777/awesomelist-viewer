@@ -53,16 +53,6 @@ export const useRequest = (path) => {
 		shouldRetryOnError: false
 	})
 
-	// const url = baseUrl + path + `/${defaultbranchname}/README.md`;
-	/* const { data, error } = useSWR(url, fetcher, {
-		revalidateIfStale: false,
-		revalidateOnFocus: false,
-		revalidateOnReconnect: false,
-		onErrorRetry: false,
-		shouldRetryOnError: false
-	}) */
-
-	//lsp-status.nvim project
 	const { data, error } = useSWR(() => baseUrl + path + `/${repo.default_branch}/README.md`, fetcher, {
 		revalidateIfStale: false,
 		revalidateOnFocus: false,

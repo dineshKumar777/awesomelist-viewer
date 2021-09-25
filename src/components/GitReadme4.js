@@ -7,8 +7,10 @@ import { SliderGitReadme } from "./SliderGitReadme";
 
 export const GitReadme4 = React.memo(function GitReadme4({ reponame }) {
 	const gitreponame = reponame;
+
 	console.log('rendering gitreadme4')
 	console.log(`git repo name => ${gitreponame}`);
+
 	const [state2, setState2] = useState({
 		isPaneOpen: false,
 		isPaneOpenLeft: false,
@@ -29,7 +31,6 @@ export const GitReadme4 = React.memo(function GitReadme4({ reponame }) {
 	const { data, error, repo } = useRequest(gitreponame);
 	useEffect(() => {
 		if (data) {
-			console.log("inside use effect... " + repo.default_branch)
 			document
 				.querySelectorAll('[href*="https"]')
 				.forEach((httplink) => {
@@ -55,7 +56,6 @@ export const GitReadme4 = React.memo(function GitReadme4({ reponame }) {
 
 	//TODO
 	//transformUri contains ./
-	// {isShow && <SlidePreviewer isOpenPane={true} hlink={hlink} htext={htext} />}
 	return (
 		<div>
 			<ReadmePreview data={data} gitreponame={gitreponame} defaultBranchname={repo.default_branch} />
@@ -70,8 +70,6 @@ export const GitReadme4 = React.memo(function GitReadme4({ reponame }) {
 					document.body.style.overflow = "visible"
 				}}
 			>
-				<div>And I am pane content. BTW, what rocks?</div>
-				<br />
 				<SliderGitReadme gitreponame={hlink.replace('https://github.com/', '')} />
 			</SlidingPane>
 		</div>

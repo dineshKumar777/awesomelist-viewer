@@ -9,16 +9,6 @@ import React from 'react'
 https://github.com/jguyon/nupum/blob/ba208f8ef4422a650ff3543fd36104afde7acf50/src/app/package-page/package-page-readme.js
 **/
 
-/* return (
-	<div>
-		<MarkdownPreview
-			source={data}
-			transformImageUri={uri =>
-				uri.startsWith("http") ? uri : `https://raw.githubusercontent.com/${gitreponame}/${defaultBranchname}/${uri}`
-			}
-		/>
-	</div>
-) */
 
 export const ReadmePreview = React.memo(function ReadmePreivew({ data, gitreponame, defaultBranchname }) {
 	console.log('rendering readmepreviewer');
