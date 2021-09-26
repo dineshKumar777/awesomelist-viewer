@@ -4,6 +4,7 @@ import SlidingPane from "react-sliding-pane";
 import "react-sliding-pane/dist/react-sliding-pane.css";
 import { ReadmePreview } from "./ReadmePreview"
 import { SliderGitReadme } from "./SliderGitReadme";
+import {FulfillingBouncingCircleSpinner}  from "react-epic-spinners"
 
 export const GitReadme4 = React.memo(function GitReadme4({ reponame }) {
 	const gitreponame = reponame;
@@ -51,7 +52,7 @@ export const GitReadme4 = React.memo(function GitReadme4({ reponame }) {
 
 	if (!data) {
 		console.log("first try");
-		return "Loading...";
+		return <FulfillingBouncingCircleSpinner	color='#000000'	size='100'/> ;
 	}
 
 	//TODO

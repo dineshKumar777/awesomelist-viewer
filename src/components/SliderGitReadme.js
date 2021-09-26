@@ -1,5 +1,6 @@
 import { useRequest } from "../userRequest"
 import { ReadmePreview } from "./ReadmePreview";
+import {FulfillingBouncingCircleSpinner}  from "react-epic-spinners"
 
 export const SliderGitReadme = ({ gitreponame }) => {
 	console.log('rendering sliderGitreadme')
@@ -10,7 +11,7 @@ export const SliderGitReadme = ({ gitreponame }) => {
 
 	if (!data) {
 		console.log('fetching data')
-		return 'Loading..'
+		return <FulfillingBouncingCircleSpinner	color='#000000'	size='50'/> ;
 	}
 
 	return (
